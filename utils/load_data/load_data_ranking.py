@@ -9,7 +9,7 @@ def load_data_all(path="../data/20m/ratings.csv", header=['user_id', 'item_id', 
                   test_size=0.2, sep="\t"):
     print("here")
     df = pd.read_csv(path, sep=sep, names=header, engine='python')
-
+    df.drop(df.index[0])
     n_users = df.user_id.unique().shape[0]
     n_items = df.item_id.unique().shape[0]
 
