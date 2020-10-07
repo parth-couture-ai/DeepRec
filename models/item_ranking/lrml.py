@@ -178,7 +178,7 @@ class LRML():
                 if self.verbose:
                     print("Index: %04d; cost= %.9f" % (i + 1, np.mean(loss)))
                     print("Total indices: " + str(self.total_batch))
-                    print("Time taken: " + str(time.time()-start1)
+                    print("Time taken: " + str(time.time()-start1))
                     start1 = time.time()
 
     def test(self):
