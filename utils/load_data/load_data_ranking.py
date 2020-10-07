@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from scipy.sparse import csr_matrix
 
 
-def load_data_all(path="../data/ml100k/movielens_100k.dat", header=['user_id', 'item_id', 'rating', 'time'],
+def load_data_all(path="../data/20m/ratings.csv", header=['user_id', 'item_id', 'rating', 'time'],
                   test_size=0.2, sep="\t"):
     df = pd.read_csv(path, sep=sep, names=header, engine='python')
 
