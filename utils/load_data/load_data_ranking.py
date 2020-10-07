@@ -64,6 +64,7 @@ def load_data_all(path="../data/ml100k/movielens_100k.dat", header=['user_id', '
 def load_data_neg(path="../data/ml100k/movielens_100k.dat", header=['user_id', 'item_id', 'rating', 'category'],
                   test_size=0.2, sep="\t"):
     df = pd.read_csv(path, names=header, engine='python')
+    print(df)
 
     n_users = df.user_id.unique().shape[0]
     n_items = df.item_id.unique().shape[0]
