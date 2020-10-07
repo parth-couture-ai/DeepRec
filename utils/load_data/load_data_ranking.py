@@ -5,11 +5,10 @@ from sklearn.model_selection import train_test_split
 from scipy.sparse import csr_matrix
 
 
-def load_data_all(path="../data/20m/ratings.csv", header=['user_id', 'item_id', 'rating', 'time'],
+def load_data_all(path="../data/ml100k/movielens_100k.dat", header=['user_id', 'item_id', 'rating', 'time'],
                   test_size=0.2, sep="\t"):
-    print("here")
     df = pd.read_csv(path, sep=sep, names=header, engine='python')
-    df.drop(df.index[0])
+
     n_users = df.user_id.unique().shape[0]
     n_items = df.item_id.unique().shape[0]
 
@@ -65,38 +64,56 @@ def load_data_all(path="../data/20m/ratings.csv", header=['user_id', 'item_id', 
 def load_data_neg(path="../data/20m/ratings.csv", header=['user_id', 'item_id', 'rating', 'category'],
                   test_size=0.2, sep="\t"):
     df = pd.read_csv(path, names=header, engine='python',header=0)
-    print(df)
+    
+    print("DATA LOADED--------------------------------------------------------------")
     n_users = df.user_id.unique().shape[0]
     n_items = df.item_id.unique().shape[0]
 
     train_data, test_data = train_test_split(df, test_size=test_size)
+
     train_data = pd.DataFrame(train_data)
     test_data = pd.DataFrame(test_data)
 
+#train sparse matrix
     train_row = []
     train_col = []
     train_rating = []
 
-    for line in train_data.itertuples():
-        u = line[1] - 1
-        i = line[2] - 1
-        train_row.append(u)
-        train_col.append(i)
+    item_col = list(np.unique(df['item_id']))
+    item_col_dict = {}
+
+    user_col = list(np.unique(df['user_id']))
+    user_col_dict = {}
+
+    for idx,i in enumerate(item_col):
+    	item_col_dict[i] = idx
+
+    for idx,i in enumerate(user_col):
+    	user_col_dict[i] = idx
+
+    for idx,line in enumerate(train_data.itertuples()):
+        print(str(idx) + "/" + str(len(train_data)))
+        train_row.append(user_col_dict[line[1]])
+        train_col.append(item_col_dict[line[2]])
         train_rating.append(1)
+
+    print('SPARSIFICATION TRAIN------------------------------------------------------')
+
     train_matrix = csr_matrix((train_rating, (train_row, train_col)), shape=(n_users, n_items))
 
-    # all_items = set(np.arange(n_items))
-    # neg_items = {}
-    # for u in range(n_users):
-    #     neg_items[u] = list(all_items - set(train_matrix.getrow(u).nonzero()[1]))
+#test sparse matrix
 
     test_row = []
     test_col = []
     test_rating = []
-    for line in test_data.itertuples():
-        test_row.append(line[1] - 1)
-        test_col.append(line[2] - 1)
+
+    for idx,line in enumerate(test_data.itertuples()):
+        print(str(idx) + "/" + str(len(test_data)))
+        test_row.append(user_col_dict[line[1]])
+        test_col.append(item_col_dict[line[2]])
         test_rating.append(1)
+
+    print('SPARSIFICATION TEST------------------------------------------------------')    
     test_matrix = csr_matrix((test_rating, (test_row, test_col)), shape=(n_users, n_items))
 
     test_dict = {}

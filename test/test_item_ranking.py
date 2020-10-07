@@ -1,5 +1,5 @@
 import argparse
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 import sys
 import os.path
 
@@ -49,6 +49,7 @@ if __name__ == '__main__':
         pass
 
     model = None
+    sess = tf.Session()
     # Model selection
     if args.model == "CDAE":
         train_data, test_data, n_user, n_item = load_data_all(test_size=0.2, sep="\t")
@@ -56,7 +57,7 @@ if __name__ == '__main__':
     if args.model == "CML":
         model = CML(n_user, n_item)
     if args.model == "LRML":
-        model = LRML(n_user, n_item)
+        model = LRML(sess=sess,num_user= n_user, num_item=n_item)
     if args.model == "BPRMF":
         model = BPRMF(n_user, n_item)
     if args.model == "NeuMF":

@@ -3,10 +3,9 @@
 WWW 2018. Authors - Yi Tay, Luu Anh Tuan, Siu Cheung Hui
 """
 
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 import time
 import numpy as np
-tf.disable_eager_execution()
 
 from utils.evaluation.RankingMetrics import *
 
@@ -29,8 +28,8 @@ class LRML():
     """
 
     def __init__(self, sess, num_user, num_item, learning_rate=0.1,
-                 reg_rate=0.1, epoch=500, batch_size=500,
-                 verbose=True, T=50, display_step=1000, mode=1,
+                 reg_rate=0.1, epoch=50, batch_size=500,
+                 verbose=True, T=10, display_step=10, mode=1,
                  copy_relations=True, dist='L1', num_mem=100):
         """ This model takes after the CML structure implemented by Shuai.
         There are several new hyperparameters introduced which are explained
@@ -164,7 +163,6 @@ class LRML():
 
         # train
         for i in range(self.total_batch):
-            start_time = time.time()
             batch_user = user_random[i * self.batch_size:(i + 1) * self.batch_size]
             batch_item = item_random[i * self.batch_size:(i + 1) * self.batch_size]
             batch_item_neg = item_random_neg[i * self.batch_size:(i + 1) * self.batch_size]
@@ -175,10 +173,10 @@ class LRML():
                                                      self.neg_item_id: batch_item_neg,
                                                      self.keep_rate: 0.98})
 
-            if i % self.display_step == 0:
+            if i % (self.total_batch/100) == 0:
                 if self.verbose:
                     print("Index: %04d; cost= %.9f" % (i + 1, np.mean(loss)))
-                    print("one iteration: %s seconds." % (time.time() - start_time))
+                    print("Total indices: " + str(self.total_batch))
 
     def test(self):
         evaluate(self)
@@ -191,8 +189,11 @@ class LRML():
         self.sess.run(init)
 
         for epoch in range(self.epochs):
+            start = time.time()
             self.train()
+            end = time.time()
             print("Epoch: %04d; " % (epoch), end="")
+            print("Time taken: " + str(end-start))
             if (epoch) % self.T == 0:
                 self.test()
 
