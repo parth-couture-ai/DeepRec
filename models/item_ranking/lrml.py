@@ -3,9 +3,10 @@
 WWW 2018. Authors - Yi Tay, Luu Anh Tuan, Siu Cheung Hui
 """
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import time
 import numpy as np
+tf.disable_eager_behaviour()
 
 from utils.evaluation.RankingMetrics import *
 
