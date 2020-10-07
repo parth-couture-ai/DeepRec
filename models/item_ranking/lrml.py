@@ -28,8 +28,8 @@ class LRML():
     """
 
     def __init__(self, sess, num_user, num_item, learning_rate=0.1,
-                 reg_rate=0.1, epoch=50, batch_size=500,
-                 verbose=True, T=10, display_step=10, mode=1,
+                 reg_rate=0.1, epoch=20, batch_size=500,
+                 verbose=True, T=8, display_step=10, mode=1,
                  copy_relations=True, dist='L1', num_mem=100):
         """ This model takes after the CML structure implemented by Shuai.
         There are several new hyperparameters introduced which are explained
@@ -162,6 +162,7 @@ class LRML():
             item_random_neg.append(neg_i[s])
 
         # train
+        start1 = time.time()
         for i in range(self.total_batch):
             batch_user = user_random[i * self.batch_size:(i + 1) * self.batch_size]
             batch_item = item_random[i * self.batch_size:(i + 1) * self.batch_size]
@@ -177,6 +178,8 @@ class LRML():
                 if self.verbose:
                     print("Index: %04d; cost= %.9f" % (i + 1, np.mean(loss)))
                     print("Total indices: " + str(self.total_batch))
+                    print("Time taken: " + str(time.time()-start1)
+                    start1 = time.time()
 
     def test(self):
         evaluate(self)
@@ -196,6 +199,7 @@ class LRML():
             print("Time taken: " + str(end-start))
             if (epoch) % self.T == 0:
                 self.test()
+        self.test()
 
     def save(self, path):
         saver = tf.train.Saver()
