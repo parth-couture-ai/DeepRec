@@ -29,7 +29,7 @@ class LRML():
 
     def __init__(self, sess, num_user, num_item, learning_rate=0.1,
                  reg_rate=0.1, epoch=500, batch_size=500,
-                 verbose=False, T=5, display_step=1000, mode=1,
+                 verbose=True, T=50, display_step=1000, mode=1,
                  copy_relations=True, dist='L1', num_mem=100):
         """ This model takes after the CML structure implemented by Shuai.
         There are several new hyperparameters introduced which are explained
@@ -191,8 +191,8 @@ class LRML():
 
         for epoch in range(self.epochs):
             self.train()
+            print("Epoch: %04d; " % (epoch), end="")
             if (epoch) % self.T == 0:
-                print("Epoch: %04d; " % (epoch), end="")
                 self.test()
 
     def save(self, path):
