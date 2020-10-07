@@ -65,8 +65,6 @@ def load_data_all(path="../data/20m/ratings.csv", header=['user_id', 'item_id', 
 def load_data_neg(path="../data/20m/ratings.csv", header=['user_id', 'item_id', 'rating', 'category'],
                   test_size=0.2, sep="\t"):
     df = pd.read_csv(path, names=header, engine='python',header=0)
-    print(df)
-
     n_users = df.user_id.unique().shape[0]
     n_items = df.item_id.unique().shape[0]
 
