@@ -39,9 +39,7 @@ if __name__ == '__main__':
     display_step = args.display_step
     batch_size = args.batch_size
 
-    train_data, test_data, n_user, n_item = load_data_neg(test_size=0.2, sep="\t")
-    print(test_data)
-    print(len(test_data))
+    train_data, test_data, n_user, n_item = load_data_neg(test_size=0.02, sep="\t")
     
     
     try:
