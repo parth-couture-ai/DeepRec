@@ -39,7 +39,7 @@ if __name__ == '__main__':
     display_step = args.display_step
     batch_size = args.batch_size
 
-    train_data, test_data, n_user, n_item = load_data_neg(test_size=0.05, sep="\t")
+    train_data, test_data, n_user, n_item = load_data_neg(test_size=0.66, sep="\t")
     n_user = 138493
     n_items = 26744
     
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     sess = tf.Session()
     # Model selection
     if args.model == "CDAE":
-        train_data, test_data, n_user, n_item = load_data_all(test_size=0.02, sep="\t")
+        train_data, test_data, n_user, n_item = load_data_all(test_size=0.66, sep="\t")
         model = ICDAE(n_user, n_item)
     if args.model == "CML":
         model = CML(n_user, n_item)
