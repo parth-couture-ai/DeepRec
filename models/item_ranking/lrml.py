@@ -197,7 +197,7 @@ class LRML():
             end = time.time()
             print("Epoch: %04d; " % (epoch+1), end="")
             print("Time taken: " + str(end-start))
-            if (epoch) % self.T == 0:
+            if (epoch) % self.T == 0 and epoch!=0:
                 self.test()
         self.save('./lrmodel/')
         self.test()
