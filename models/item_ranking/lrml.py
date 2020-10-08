@@ -195,17 +195,17 @@ class LRML():
         init = tf.global_variables_initializer()
         self.sess.run(init)
         
-#         self.load('./lrmodel/model.ckpt')
-#         print('model loaded!----------------------')
-        for epoch in range(self.epochs):
-            start = time.time()
-            self.train()
-            end = time.time()
-            print("Epoch: %04d; " % (epoch+1), end="")
-            print("Time taken: " + str(end-start))
-            if (epoch) % self.T == 0 and epoch!=0:
-                self.save('./lrmodel/' + str(epoch) + '/model.chkpt') 
-        self.save('./lrmodel/final/model.ckpt')
+        self.load('./lrmodel/final/model.ckpt')
+        print('model loaded!----------------------')
+#         for epoch in range(self.epochs):
+#             start = time.time()
+#             self.train()
+#             end = time.time()
+#             print("Epoch: %04d; " % (epoch+1), end="")
+#             print("Time taken: " + str(end-start))
+#             if (epoch) % self.T == 0 and epoch!=0:
+#                 self.save('./lrmodel/' + str(epoch) + '/model.chkpt') 
+#         self.save('./lrmodel/final/model.ckpt')
         self.test()
 
     def save(self, path):
