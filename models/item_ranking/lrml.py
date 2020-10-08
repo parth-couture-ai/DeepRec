@@ -190,7 +190,7 @@ class LRML():
              print('Making directory---------------')
              os.mkdir('./lrmodel/')
         
-#         self.prepare_data(train_data, test_data)
+        self.prepare_data(train_data, test_data)
 
 #         init = tf.global_variables_initializer()
 #         self.sess.run(init)
