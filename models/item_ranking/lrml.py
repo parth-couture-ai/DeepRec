@@ -192,8 +192,8 @@ class LRML():
         
         self.prepare_data(train_data, test_data)
 
-        init = tf.global_variables_initializer()
-        self.sess.run(init)
+#         init = tf.global_variables_initializer()
+#         self.sess.run(init)
         
         self.load('./lrmodel/16/model.ckpt')
         print('model loaded!----------------------')
