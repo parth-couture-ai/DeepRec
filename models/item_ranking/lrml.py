@@ -28,7 +28,7 @@ class LRML():
     private code repository. This has NOT undergone sanity checks.
     """
 
-    def __init__(self, sess, num_user, num_item, learning_rate=0.1,
+    def __init__(self, sess, num_user, num_item, num_item_temp,num_user_temp, learning_rate=0.1,
                  reg_rate=0.1, epoch=20, batch_size=500,
                  verbose=True, T=8, display_step=1, mode=1,
                  copy_relations=True, dist='L1', num_mem=100):
@@ -50,6 +50,8 @@ class LRML():
         self.sess = sess
         self.num_user = num_user
         self.num_item = num_item
+        self.num_user_temp = num_user_temp
+        self.num_item_temp = num_item_temp
         self.verbose = verbose
         self.T = T
         self.mode = mode
@@ -220,7 +222,7 @@ class LRML():
     def _get_neg_items(self, data):
         all_items = set(np.arange(self.num_item))
         neg_items = {}
-        for u in range(self.num_user):
+        for u in range(self.num_user_temp):
             neg_items[u] = list(all_items - set(data.getrow(u).nonzero()[1]))
 
         return neg_items
