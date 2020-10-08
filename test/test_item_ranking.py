@@ -40,8 +40,6 @@ if __name__ == '__main__':
     batch_size = args.batch_size
 
     train_data, test_data, n_user, n_item = load_data_neg(test_size=0.66, sep="\t")
-    n_user1 = 138493
-    n_item1 = 26744
     
     try:
         gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -59,7 +57,7 @@ if __name__ == '__main__':
     if args.model == "CML":
         model = CML(n_user, n_item)
     if args.model == "LRML":
-        model = LRML(sess=sess,num_user= n_user1, num_item=num_item1,num_item_temp = num_item, num_user_temp = num_user)
+        model = LRML(sess=sess,num_user= 138493, num_item=26744,num_item_temp = n_item, num_user_temp = n_user)
     if args.model == "BPRMF":
         model = BPRMF(n_user, n_item)
     if args.model == "NeuMF":
