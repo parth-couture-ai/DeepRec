@@ -186,7 +186,7 @@ class LRML():
         evaluate(self)
 
     def execute(self, train_data, test_data):
-        if(!(os.path.isdir('./lrmodel/'):
+        if not os.path.isdir('./lrmodel/'):
              print('Making directory---------------')
              os.mkdir('./lrmodel/')
         
