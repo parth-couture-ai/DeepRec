@@ -195,10 +195,11 @@ class LRML():
             start = time.time()
             self.train()
             end = time.time()
-            print("Epoch: %04d; " % (epoch), end="")
+            print("Epoch: %04d; " % (epoch+1), end="")
             print("Time taken: " + str(end-start))
             if (epoch) % self.T == 0:
                 self.test()
+        self.save('./lrmodel/')
         self.test()
 
     def save(self, path):
