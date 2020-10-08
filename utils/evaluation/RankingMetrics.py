@@ -79,7 +79,8 @@ def evaluate(self):
     ndcg = []
     ndcg_at_5 = []
     ndcg_at_10 = []
-    for u in self.test_users:
+    for idx,u in enumerate(self.test_users):
+        print(str(idx) + '/' + str(len(self.test_users)))
         user_ids = []
         user_neg_items = self.neg_items[u]
         item_ids = []
