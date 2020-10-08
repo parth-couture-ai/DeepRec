@@ -206,7 +206,7 @@ class LRML():
 #             if (epoch) % self.T == 0 and epoch!=0:
 #                 self.save('./lrmodel/' + str(epoch) + '/model.chkpt') 
 #         self.save('./lrmodel/final/model.ckpt')
-#         self.test()
+        self.test()
 
     def save(self, path):
         saver = tf.train.Saver()
