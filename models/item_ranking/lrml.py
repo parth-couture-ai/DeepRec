@@ -199,7 +199,7 @@ class LRML():
             print("Time taken: " + str(end-start))
             if (epoch) % self.T == 0 and epoch!=0:
                 self.test()
-        self.save('./lrmodel/')
+        self.save('./lrmodel/model.ckpt')
         self.test()
 
     def save(self, path):
