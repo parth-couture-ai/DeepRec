@@ -40,7 +40,10 @@ if __name__ == '__main__':
     batch_size = args.batch_size
 
     train_data, test_data, n_user, n_item = load_data_neg(test_size=0.2, sep="\t")
-
+    print(test_data)
+    print(len(test_data))
+    
+    
     try:
         gpus = tf.config.experimental.list_physical_devices('GPU')
         tf.config.experimental.set_memory_growth(gpus[0], True)
