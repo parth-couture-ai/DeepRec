@@ -59,7 +59,7 @@ if __name__ == '__main__':
     if args.model == "CML":
         model = CML(n_user, n_item)
     if args.model == "LRML":
-        model = LRML(sess=sess,num_user= n_user1, num_item=n_item1,num_item_temp = num_item, num_user_temp = num_user)
+        model = LRML(sess=sess,num_user= n_user1, num_item=num_item1,num_item_temp = num_item, num_user_temp = num_user)
     if args.model == "BPRMF":
         model = BPRMF(n_user, n_item)
     if args.model == "NeuMF":
