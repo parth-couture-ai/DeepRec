@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     train_data, test_data, n_user, n_item = load_data_neg(test_size=0.66, sep="\t")
     n_user1 = 138493
-    n_items1 = 26744
+    n_item1 = 26744
     
     try:
         gpus = tf.config.experimental.list_physical_devices('GPU')
