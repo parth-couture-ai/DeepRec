@@ -190,7 +190,7 @@ class LRML():
              print('Making directory---------------')
              os.mkdir('./lrmodel/')
         
-        self.prepare_data(train_data, test_data)
+#         self.prepare_data(train_data, test_data)
 
 #         init = tf.global_variables_initializer()
 #         self.sess.run(init)
@@ -206,7 +206,7 @@ class LRML():
 #             if (epoch) % self.T == 0 and epoch!=0:
 #                 self.save('./lrmodel/' + str(epoch) + '/model.chkpt') 
 #         self.save('./lrmodel/final/model.ckpt')
-        self.test()
+#         self.test()
 
     def save(self, path):
         saver = tf.train.Saver()
