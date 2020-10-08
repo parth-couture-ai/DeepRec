@@ -195,7 +195,7 @@ class LRML():
 #         init = tf.global_variables_initializer()
 #         self.sess.run(init)
         
-        self.load('./lrmodel/16/')
+        self.load('./lrmodel/16/checkpoint')
         print('model loaded!----------------------')
 #         for epoch in range(self.epochs):
 #             start = time.time()
