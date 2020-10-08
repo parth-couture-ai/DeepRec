@@ -190,7 +190,9 @@ class LRML():
 
         init = tf.global_variables_initializer()
         self.sess.run(init)
-
+        
+        self.load('./lrmodel/model.ckpt')
+        print('model loaded!----------------------')
         for epoch in range(self.epochs):
             start = time.time()
             self.train()
