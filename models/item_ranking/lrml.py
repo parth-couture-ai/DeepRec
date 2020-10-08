@@ -220,7 +220,7 @@ class LRML():
                                          self.item_id: item_id, self.keep_rate: 1})[0]
 
     def _get_neg_items(self, data):
-        all_items = set(np.arange(self.num_item))
+        all_items = set(np.arange(self.num_item_temp))
         neg_items = {}
         for u in range(self.num_user_temp):
             neg_items[u] = list(all_items - set(data.getrow(u).nonzero()[1]))
