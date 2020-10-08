@@ -6,6 +6,7 @@ WWW 2018. Authors - Yi Tay, Luu Anh Tuan, Siu Cheung Hui
 import tensorflow as tf
 import time
 import numpy as np
+import os
 
 from utils.evaluation.RankingMetrics import *
 
@@ -185,7 +186,10 @@ class LRML():
         evaluate(self)
 
     def execute(self, train_data, test_data):
-
+        if(!(os.path.isdir('./lrmodel/'):
+             print('Making directory---------------')
+             os.mkdir('./lrmodel/')
+        
         self.prepare_data(train_data, test_data)
 
         init = tf.global_variables_initializer()
