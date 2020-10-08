@@ -55,7 +55,7 @@ if __name__ == '__main__':
     sess = tf.Session()
     # Model selection
     if args.model == "CDAE":
-        train_data, test_data, n_user, n_item = load_data_all(test_size=0.2, sep="\t")
+        train_data, test_data, n_user, n_item = load_data_all(test_size=0.02, sep="\t")
         model = ICDAE(n_user, n_item)
     if args.model == "CML":
         model = CML(n_user, n_item)
