@@ -218,3 +218,7 @@ class LRML():
             neg_items[u] = list(all_items - set(data.getrow(u).nonzero()[1]))
 
         return neg_items
+    
+    def load(self, path):
+        saver = tf.train.Saver()
+        saver.restor(self.sess, path)
