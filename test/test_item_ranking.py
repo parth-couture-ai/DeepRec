@@ -40,6 +40,8 @@ if __name__ == '__main__':
     batch_size = args.batch_size
 
     train_data, test_data, n_user, n_item = load_data_neg(test_size=0.05, sep="\t")
+    n_user = 138493
+    n_items = 26744
     
     try:
         gpus = tf.config.experimental.list_physical_devices('GPU')
