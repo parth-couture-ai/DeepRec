@@ -90,16 +90,20 @@ def evaluate(self):
             user_ids.append(u)
 
         scores = self.predict(user_ids, item_ids)
+        print("PREDICTIONS MADE-----------------------------------------------")
         # print(type(scores))
         # print(scores)
         # print(np.shape(scores))
         # print(ratings)
         neg_item_index = list(zip(item_ids, scores))
+        print("zipping MADE-----------------------------------------------")
 
         ranked_list[u] = sorted(neg_item_index, key=lambda tup: tup[1], reverse=True)
         pred_ratings[u] = [r[0] for r in ranked_list[u]]
         pred_ratings_5[u] = pred_ratings[u][:5]
         pred_ratings_10[u] = pred_ratings[u][:10]
+        
+        print("SORTING MADE-----------------------------------------------")
 
         p_5, r_5, ndcg_5 = precision_recall_ndcg_at_k(5, pred_ratings_5[u], self.test_data[u])
         p_at_5.append(p_5)
@@ -113,6 +117,7 @@ def evaluate(self):
         map.append(map_u)
         mrr.append(mrr_u)
         ndcg.append(ndcg_u)
+        print("final MADE-----------------------------------------------")
 
     print("------------------------")
     print("precision@10:" + str(np.mean(p_at_10)))
